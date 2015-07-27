@@ -132,9 +132,23 @@
 <a id="the-reason-this-is-important-is-the-pacman-updateupgrade-process-for-some-reason-removes-this-option-when-updating-your-commandline-and-effectively-turns-your-filesystem-readonly-which-makes-it-very-difficult-to-do-anything-if-you-cant-write-files--make-sure-do-this-step-and-reboot-the-machine-after-you-do--if-you-dont-do-this-and-reboot-youll-get-errors-when-trying-to-install-new-packages-for-instance-that-your-filesystem-is-readonly" class="anchor" href="#the-reason-this-is-important-is-the-pacman-updateupgrade-process-for-some-reason-removes-this-option-when-updating-your-commandline-and-effectively-turns-your-filesystem-readonly-which-makes-it-very-difficult-to-do-anything-if-you-cant-write-files--make-sure-do-this-step-and-reboot-the-machine-after-you-do--if-you-dont-do-this-and-reboot-youll-get-errors-when-trying-to-install-new-packages-for-instance-that-your-filesystem-is-readonly" aria-hidden="true"><span class="octicon octicon-link"></span></a>The reason this is important is, the pacman update/upgrade process, for some reason, removes this option when updating your commandline, and effectively turns your filesystem readonly, which makes it very difficult to do anything if you can't write files.  Make sure do this step and reboot the machine after you do.  If you don't do this and reboot, you'll get errors when trying to install new packages, for instance, that your filesystem is readonly.</h3>
 
 <h2>
+<a id="optional-step--set-up-wifi" class="anchor" href="#optional-step--set-up-wifi" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optional step : Set up wifi</h2>
+
+<pre><code>wifi-menu                    # follow instructions
+netctl list                  # list wifi networks
+netctl enable wlan0-[name]   # connect to wifi wlan0-[name] on boot
+</code></pre>
+
+<h2>
 <a id="install-docker" class="anchor" href="#install-docker" aria-hidden="true"><span class="octicon octicon-link"></span></a>install Docker</h2>
 
 <pre><code>pacman -S docker
+</code></pre>
+
+<h2>
+<a id="start-docker-daemon-at-boot" class="anchor" href="#start-docker-daemon-at-boot" aria-hidden="true"><span class="octicon octicon-link"></span></a>start Docker daemon at boot</h2>
+
+<pre><code>sudo systemctl enable docker
 </code></pre>
 
 <h1>
