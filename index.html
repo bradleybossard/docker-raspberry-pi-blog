@@ -1,57 +1,48 @@
-<!doctype html>
-<html>
+<!DOCTYPE html>
+<html lang="en-us">
   <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+    <meta charset="UTF-8">
     <title>Docker-raspberry-pi-blog by bradleybossard</title>
-
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/github-light.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
-    <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-    <![endif]-->
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
   </head>
   <body>
-    <div class="wrapper">
-      <header>
-        <h1>Docker-raspberry-pi-blog</h1>
-        <p>Docker on Raspberry Pi adventures</p>
+    <section class="page-header">
+      <h1 class="project-name">Docker-raspberry-pi-blog</h1>
+      <h2 class="project-tagline">Docker on Raspberry Pi adventures</h2>
+      <a href="https://github.com/bradleybossard/docker-raspberry-pi-blog" class="btn">View on GitHub</a>
+      <a href="https://github.com/bradleybossard/docker-raspberry-pi-blog/zipball/master" class="btn">Download .zip</a>
+      <a href="https://github.com/bradleybossard/docker-raspberry-pi-blog/tarball/master" class="btn">Download .tar.gz</a>
+    </section>
 
-        <p class="view"><a href="https://github.com/bradleybossard/docker-raspberry-pi-blog">View the Project on GitHub <small>bradleybossard/docker-raspberry-pi-blog</small></a></p>
-
-
-        <ul>
-          <li><a href="https://github.com/bradleybossard/docker-raspberry-pi-blog/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/bradleybossard/docker-raspberry-pi-blog/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/bradleybossard/docker-raspberry-pi-blog">View On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        <h1>
-<a id="docker-on-the-raspberry-pi" class="anchor" href="#docker-on-the-raspberry-pi" aria-hidden="true"><span class="octicon octicon-link"></span></a>Docker on the Raspberry PI</h1>
+    <section class="main-content">
+      <h1>
+<a id="docker-on-the-raspberry-pi" class="anchor" href="#docker-on-the-raspberry-pi" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Docker on the Raspberry PI</h1>
 
 <p>This page is intended to be a completely straight-forward, starting from scratch guide to getting Docker running on the Raspberry Pi and making it do some fun tricks.  It's an idea I've been interested in for a while, but most of the information in this space either relies on information from blog.hypriot.com or resin.io, both of which I've found issues with, so I've decided to create my own process based on "from scratch" findings and hopefully hightlight some gotchas along the way.</p>
 
 <h2>
-<a id="issues-with-resinio" class="anchor" href="#issues-with-resinio" aria-hidden="true"><span class="octicon octicon-link"></span></a>Issues with Resin.io</h2>
+<a id="issues-with-resinio" class="anchor" href="#issues-with-resinio" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Issues with Resin.io</h2>
 
 <p>Resin.io is focused on creating a commercial product (nothing wrong with that) which allows you to remotely push Docker images to a set of devices deployed in the field.  For the purposes of learning Raspberry Pi and Docker, this adds a layer of abstraction to the heart of the problem and dependence on a web service.  At some point, I may be very interested in a service like this, but not for my current learning purposes.</p>
 
 <h2>
-<a id="issues-with-hypriot" class="anchor" href="#issues-with-hypriot" aria-hidden="true"><span class="octicon octicon-link"></span></a>Issues with Hypriot</h2>
+<a id="issues-with-hypriot" class="anchor" href="#issues-with-hypriot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Issues with Hypriot</h2>
 
 <p>These guys are awesome and I have learned a lot from them.  My issue is, their approach is mainly focused on using their own Linux images with Docker preinstalled.  While this is fine and works, it again, in my eyes adds a little bit of abstraction to the process, and makes the process of creating the initial SD card a bit more daunting.</p>
 
 <h2>
-<a id="my-approach-and-why" class="anchor" href="#my-approach-and-why" aria-hidden="true"><span class="octicon octicon-link"></span></a>My approach and why</h2>
+<a id="my-approach-and-why" class="anchor" href="#my-approach-and-why" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>My approach and why</h2>
 
 <p>When I first began using Raspberry Pi, I had a lot of trouble understanding how to download an image, and burn it to an SD card.  For at least a week or so, I would try to follow some instructions, burn a card, stick it in my Pi and nothing happened.  Finally I got it right, and the screen lit up.  Eventually, the Raspberry Pi Foundation came up with the NOOBS (New Out Of Box Setup) distribution tool, and made this process a snap, and even gave you the ability to choose which operating system to install.</p>
 
 <p>My approach is to use NOOBS to install a distribution of Linux called Arch Linux, which already has Docker (1.7 at the time of this writing) available to it's package manager.  This way, the process of getting started with Docker on the Raspberry Pi isn't all that much different that install an OS on Raspberry Pi the way a beginning user might normally go about it.</p>
 
 <h2>
-<a id="caveats" class="anchor" href="#caveats" aria-hidden="true"><span class="octicon octicon-link"></span></a>Caveats</h2>
+<a id="caveats" class="anchor" href="#caveats" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Caveats</h2>
 
 <ul>
 <li>At one point in time, the NOOBS tool offered several different choices of operating systems to install, including Raspbian, Arch Linux, OpenElec, etc.  At roughly the 1.4 release, they removed several of these choices, and only make Raspbian available.  While Raspbian is a great distribution, it doesn't not have Docker available in it's package manager.  To get around this issue, we'll download version 1.3.9 of the NOOBS distribution, and use it to install Arch Linux.  Once Arch Linux is installed, we'll perform a system update and then install Docker.  Let's get started!</li>
@@ -60,79 +51,79 @@
 <p>TODO(bradleybossard) - Fill in the steps below.</p>
 
 <h2>
-<a id="download-noobs-v-139" class="anchor" href="#download-noobs-v-139" aria-hidden="true"><span class="octicon octicon-link"></span></a>Download NOOBS v. 1.3.9</h2>
+<a id="download-noobs-v-139" class="anchor" href="#download-noobs-v-139" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Download NOOBS v. 1.3.9</h2>
 
 <h2>
-<a id="unzip-and-install-on-an-sd-card" class="anchor" href="#unzip-and-install-on-an-sd-card" aria-hidden="true"><span class="octicon octicon-link"></span></a>Unzip and install on an SD card.</h2>
+<a id="unzip-and-install-on-an-sd-card" class="anchor" href="#unzip-and-install-on-an-sd-card" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Unzip and install on an SD card.</h2>
 
 <h2>
-<a id="turn-on-pi-and-install-arch-linux" class="anchor" href="#turn-on-pi-and-install-arch-linux" aria-hidden="true"><span class="octicon octicon-link"></span></a>Turn on PI and install Arch Linux</h2>
+<a id="turn-on-pi-and-install-arch-linux" class="anchor" href="#turn-on-pi-and-install-arch-linux" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Turn on PI and install Arch Linux</h2>
 
 <h2>
-<a id="reboot-pi-to-arch-linux" class="anchor" href="#reboot-pi-to-arch-linux" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reboot PI to Arch Linux</h2>
+<a id="reboot-pi-to-arch-linux" class="anchor" href="#reboot-pi-to-arch-linux" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reboot PI to Arch Linux</h2>
 
 <h2>
-<a id="log-into-arch-linux-username-root-password-root" class="anchor" href="#log-into-arch-linux-username-root-password-root" aria-hidden="true"><span class="octicon octicon-link"></span></a>Log into Arch Linux, username: root, password: root</h2>
+<a id="log-into-arch-linux-username-root-password-root" class="anchor" href="#log-into-arch-linux-username-root-password-root" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Log into Arch Linux, username: root, password: root</h2>
 
 <h2>
-<a id="change-root-password" class="anchor" href="#change-root-password" aria-hidden="true"><span class="octicon octicon-link"></span></a>Change root password</h2>
+<a id="change-root-password" class="anchor" href="#change-root-password" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Change root password</h2>
 
 <pre><code>passwd
 </code></pre>
 
 <h2>
-<a id="add-a-new-user" class="anchor" href="#add-a-new-user" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add a new user</h2>
+<a id="add-a-new-user" class="anchor" href="#add-a-new-user" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Add a new user</h2>
 
 <h1>
-<a id="add-user-to-group-users-startup-with-bash-shell" class="anchor" href="#add-user-to-group-users-startup-with-bash-shell" aria-hidden="true"><span class="octicon octicon-link"></span></a>add user to group users, startup with bash shell</h1>
+<a id="add-user-to-group-users-startup-with-bash-shell" class="anchor" href="#add-user-to-group-users-startup-with-bash-shell" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>add user to group users, startup with bash shell</h1>
 
 <pre><code>useradd -m -g users -s /bin/bash &lt;username&gt;
 </code></pre>
 
 <h1>
-<a id="change-password-for-user" class="anchor" href="#change-password-for-user" aria-hidden="true"><span class="octicon octicon-link"></span></a>change password for user</h1>
+<a id="change-password-for-user" class="anchor" href="#change-password-for-user" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>change password for user</h1>
 
 <pre><code>passwd &lt;username&gt;
 </code></pre>
 
 <h2>
-<a id="perform-a-system-update" class="anchor" href="#perform-a-system-update" aria-hidden="true"><span class="octicon octicon-link"></span></a>Perform a system update</h2>
+<a id="perform-a-system-update" class="anchor" href="#perform-a-system-update" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Perform a system update</h2>
 
 <h1>
-<a id="update-all-packages" class="anchor" href="#update-all-packages" aria-hidden="true"><span class="octicon octicon-link"></span></a>update all packages</h1>
+<a id="update-all-packages" class="anchor" href="#update-all-packages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>update all packages</h1>
 
 <pre><code>pacman -Syu                 
 </code></pre>
 
 <h1>
-<a id="update-database-are-updating-all-packages" class="anchor" href="#update-database-are-updating-all-packages" aria-hidden="true"><span class="octicon octicon-link"></span></a>update database are updating all packages</h1>
+<a id="update-database-are-updating-all-packages" class="anchor" href="#update-database-are-updating-all-packages" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>update database are updating all packages</h1>
 
 <pre><code>pacman-db-upgrade
 </code></pre>
 
 <h3>
-<a id="add-rw-to-bootcmdlinetxt-before-rebooting--as-root-type-the-following" class="anchor" href="#add-rw-to-bootcmdlinetxt-before-rebooting--as-root-type-the-following" aria-hidden="true"><span class="octicon octicon-link"></span></a>Add rw to /boot/cmdline.txt before rebooting.  As root, type the following</h3>
+<a id="add-rw-to-bootcmdlinetxt-before-rebooting--as-root-type-the-following" class="anchor" href="#add-rw-to-bootcmdlinetxt-before-rebooting--as-root-type-the-following" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Add rw to /boot/cmdline.txt before rebooting.  As root, type the following</h3>
 
 <pre><code>nano /boot/cmdline.txt
 </code></pre>
 
 <h3>
-<a id="and-add-the-following-to-end-the-of-the-command-line" class="anchor" href="#and-add-the-following-to-end-the-of-the-command-line" aria-hidden="true"><span class="octicon octicon-link"></span></a>And add the following to end the of the command line</h3>
+<a id="and-add-the-following-to-end-the-of-the-command-line" class="anchor" href="#and-add-the-following-to-end-the-of-the-command-line" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>And add the following to end the of the command line</h3>
 
 <pre><code>rw
 </code></pre>
 
 <h3>
-<a id="such-that-your-file-might-look-something-like-this" class="anchor" href="#such-that-your-file-might-look-something-like-this" aria-hidden="true"><span class="octicon octicon-link"></span></a>Such that your file might look something like this</h3>
+<a id="such-that-your-file-might-look-something-like-this" class="anchor" href="#such-that-your-file-might-look-something-like-this" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Such that your file might look something like this</h3>
 
 <pre><code>ipv6.disable=1 avoid_safe_mode=1 selinux=0 plymouth.enable=0 smsc95xx.turbo_mode=N dwc_otg.lpm_enable=0 console=ttyAMA0,115200 kgdboc=ttyAMA0,115200 console=tty1 root=/dev/mmcblk0p6 rootfstype=ext4 elevator=noop rootwait rw
 </code></pre>
 
 <h3>
-<a id="the-reason-this-is-important-is-the-pacman-updateupgrade-process-for-some-reason-removes-this-option-when-updating-your-commandline-and-effectively-turns-your-filesystem-readonly-which-makes-it-very-difficult-to-do-anything-if-you-cant-write-files--make-sure-do-this-step-and-reboot-the-machine-after-you-do--if-you-dont-do-this-and-reboot-youll-get-errors-when-trying-to-install-new-packages-for-instance-that-your-filesystem-is-readonly" class="anchor" href="#the-reason-this-is-important-is-the-pacman-updateupgrade-process-for-some-reason-removes-this-option-when-updating-your-commandline-and-effectively-turns-your-filesystem-readonly-which-makes-it-very-difficult-to-do-anything-if-you-cant-write-files--make-sure-do-this-step-and-reboot-the-machine-after-you-do--if-you-dont-do-this-and-reboot-youll-get-errors-when-trying-to-install-new-packages-for-instance-that-your-filesystem-is-readonly" aria-hidden="true"><span class="octicon octicon-link"></span></a>The reason this is important is, the pacman update/upgrade process, for some reason, removes this option when updating your commandline, and effectively turns your filesystem readonly, which makes it very difficult to do anything if you can't write files.  Make sure do this step and reboot the machine after you do.  If you don't do this and reboot, you'll get errors when trying to install new packages, for instance, that your filesystem is readonly.</h3>
+<a id="the-reason-this-is-important-is-the-pacman-updateupgrade-process-for-some-reason-removes-this-option-when-updating-your-commandline-and-effectively-turns-your-filesystem-readonly-which-makes-it-very-difficult-to-do-anything-if-you-cant-write-files--make-sure-do-this-step-and-reboot-the-machine-after-you-do--if-you-dont-do-this-and-reboot-youll-get-errors-when-trying-to-install-new-packages-for-instance-that-your-filesystem-is-readonly" class="anchor" href="#the-reason-this-is-important-is-the-pacman-updateupgrade-process-for-some-reason-removes-this-option-when-updating-your-commandline-and-effectively-turns-your-filesystem-readonly-which-makes-it-very-difficult-to-do-anything-if-you-cant-write-files--make-sure-do-this-step-and-reboot-the-machine-after-you-do--if-you-dont-do-this-and-reboot-youll-get-errors-when-trying-to-install-new-packages-for-instance-that-your-filesystem-is-readonly" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>The reason this is important is, the pacman update/upgrade process, for some reason, removes this option when updating your commandline, and effectively turns your filesystem readonly, which makes it very difficult to do anything if you can't write files.  Make sure do this step and reboot the machine after you do.  If you don't do this and reboot, you'll get errors when trying to install new packages, for instance, that your filesystem is readonly.</h3>
 
 <h2>
-<a id="optional-step--set-up-wifi" class="anchor" href="#optional-step--set-up-wifi" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optional step : Set up wifi</h2>
+<a id="optional-step--set-up-wifi" class="anchor" href="#optional-step--set-up-wifi" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Optional step : Set up wifi</h2>
 
 <pre><code>wifi-menu                    # follow instructions
 netctl list                  # list wifi networks
@@ -140,51 +131,53 @@ netctl enable wlan0-[name]   # connect to wifi wlan0-[name] on boot
 </code></pre>
 
 <h2>
-<a id="install-docker" class="anchor" href="#install-docker" aria-hidden="true"><span class="octicon octicon-link"></span></a>install Docker</h2>
+<a id="install-docker" class="anchor" href="#install-docker" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>install Docker</h2>
 
 <pre><code>pacman -S docker
 </code></pre>
 
 <h2>
-<a id="start-docker-daemon-at-boot" class="anchor" href="#start-docker-daemon-at-boot" aria-hidden="true"><span class="octicon octicon-link"></span></a>start Docker daemon at boot</h2>
+<a id="start-docker-daemon-at-boot" class="anchor" href="#start-docker-daemon-at-boot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>start Docker daemon at boot</h2>
 
 <pre><code>sudo systemctl enable docker
 </code></pre>
 
 <h1>
-<a id="optional-step-install-openssh-and-configure-sshd" class="anchor" href="#optional-step-install-openssh-and-configure-sshd" aria-hidden="true"><span class="octicon octicon-link"></span></a>Optional step: Install OpenSSH and configure sshd</h1>
+<a id="optional-step-install-openssh-and-configure-sshd" class="anchor" href="#optional-step-install-openssh-and-configure-sshd" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Optional step: Install OpenSSH and configure sshd</h1>
 
 <pre><code>TODO(bradleybossard) : Add instructions and motivation for this step.
 </code></pre>
 
 <h2>
-<a id="reboot-pi" class="anchor" href="#reboot-pi" aria-hidden="true"><span class="octicon octicon-link"></span></a>Reboot Pi</h2>
+<a id="reboot-pi" class="anchor" href="#reboot-pi" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Reboot Pi</h2>
 
 <pre><code>reboot
 </code></pre>
 
 <h2>
-<a id="log-in-start-docker--d-and-run-a-docker-test-image" class="anchor" href="#log-in-start-docker--d-and-run-a-docker-test-image" aria-hidden="true"><span class="octicon octicon-link"></span></a>Log in, start 'docker -d' and run a docker test image</h2>
+<a id="log-in-start-docker--d-and-run-a-docker-test-image" class="anchor" href="#log-in-start-docker--d-and-run-a-docker-test-image" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Log in, start 'docker -d' and run a docker test image</h2>
 
 <pre><code>TODO(bradleybossard) : Provide instruction on these steps.
 
 sudo docker pull resin/rpi-raspbian
 sudo docker run -i -t --rm resin/rpi-raspbian bash
 </code></pre>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/bradleybossard">bradleybossard</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
+
+      <footer class="site-footer">
+        <span class="site-footer-owner"><a href="https://github.com/bradleybossard/docker-raspberry-pi-blog">Docker-raspberry-pi-blog</a> is maintained by <a href="https://github.com/bradleybossard">bradleybossard</a>.</span>
+
+        <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
-    </div>
-    <script src="javascripts/scale.fix.js"></script>
-              <script type="text/javascript">
+
+    </section>
+
+            <script type="text/javascript">
             var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
             document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
           </script>
           <script type="text/javascript">
             try {
-              var pageTracker = _gat._getTracker("UA-65579598-1");
+              var pageTracker = _gat._getTracker("UA-52576926-1");
             pageTracker._trackPageview();
             } catch(err) {}
           </script>
